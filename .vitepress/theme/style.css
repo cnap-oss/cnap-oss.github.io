@@ -1,0 +1,150 @@
+/**
+ * Customize default theme styling by overriding CSS variables:
+ * https://github.com/vuejs/vitepress/blob/main/src/client/theme-default/styles/vars.css
+ */
+
+/**
+ * Custom Color Palette
+ * - Atmosphere Blue: #1A1A2E - Dark background
+ * - Cyber Teal: #00E5C9 - Primary brand color
+ * - Deep Violet: #5D3F6A - Secondary accent
+ * - Jetpack Orange: #FF9F43 - Highlights and warnings
+ * -------------------------------------------------------------------------- */
+
+:root {
+  /* Custom Cyber Teal Scale */
+  --vp-c-cyber-teal-1: #4dfff0;
+  --vp-c-cyber-teal-2: #1fffd9;
+  --vp-c-cyber-teal-3: #00e5c9;
+  --vp-c-cyber-teal-soft: rgba(0, 229, 201, 0.14);
+
+  /* Custom Orange Scale */
+  --vp-c-orange-1: #ffb976;
+  --vp-c-orange-2: #ffa95c;
+  --vp-c-orange-3: #ff9f43;
+  --vp-c-orange-soft: rgba(255, 159, 67, 0.14);
+
+  /* Custom Violet Scale */
+  --vp-c-violet-1: #8d6d9c;
+  --vp-c-violet-2: #745683;
+  --vp-c-violet-3: #5d3f6a;
+  --vp-c-violet-soft: rgba(93, 63, 106, 0.14);
+
+  /* Custom Dark Background */
+  --vp-c-bg: #ffffff;
+  --vp-c-bg-alt: #f6f6f7;
+  --vp-c-bg-elv: #ffffff;
+  --vp-c-bg-soft: #f6f6f7;
+}
+
+/**
+ * Dark Mode Colors
+ * -------------------------------------------------------------------------- */
+
+.dark {
+  --vp-c-bg: #1a1a2e;
+  --vp-c-bg-alt: #16161f;
+  --vp-c-bg-elv: #202030;
+  --vp-c-bg-soft: #202030;
+}
+
+/**
+ * Colors
+ * -------------------------------------------------------------------------- */
+
+:root {
+  --vp-c-default-1: var(--vp-c-gray-1);
+  --vp-c-default-2: var(--vp-c-gray-2);
+  --vp-c-default-3: var(--vp-c-gray-3);
+  --vp-c-default-soft: var(--vp-c-gray-soft);
+
+  /* Use Cyber Teal as primary brand color */
+  --vp-c-brand-1: var(--vp-c-cyber-teal-1);
+  --vp-c-brand-2: var(--vp-c-cyber-teal-2);
+  --vp-c-brand-3: var(--vp-c-cyber-teal-3);
+  --vp-c-brand-soft: var(--vp-c-cyber-teal-soft);
+
+  /* Use Violet for tips */
+  --vp-c-tip-1: var(--vp-c-violet-1);
+  --vp-c-tip-2: var(--vp-c-violet-2);
+  --vp-c-tip-3: var(--vp-c-violet-3);
+  --vp-c-tip-soft: var(--vp-c-violet-soft);
+
+  /* Use Orange for warnings */
+  --vp-c-warning-1: var(--vp-c-orange-1);
+  --vp-c-warning-2: var(--vp-c-orange-2);
+  --vp-c-warning-3: var(--vp-c-orange-3);
+  --vp-c-warning-soft: var(--vp-c-orange-soft);
+
+  --vp-c-danger-1: var(--vp-c-red-1);
+  --vp-c-danger-2: var(--vp-c-red-2);
+  --vp-c-danger-3: var(--vp-c-red-3);
+  --vp-c-danger-soft: var(--vp-c-red-soft);
+}
+
+/**
+ * Component: Button
+ * -------------------------------------------------------------------------- */
+
+:root {
+  --vp-button-brand-border: transparent;
+  --vp-button-brand-text: var(--vp-c-white);
+  --vp-button-brand-bg: var(--vp-c-brand-3);
+  --vp-button-brand-hover-border: transparent;
+  --vp-button-brand-hover-text: var(--vp-c-white);
+  --vp-button-brand-hover-bg: var(--vp-c-brand-2);
+  --vp-button-brand-active-border: transparent;
+  --vp-button-brand-active-text: var(--vp-c-white);
+  --vp-button-brand-active-bg: var(--vp-c-brand-1);
+}
+
+/**
+ * Component: Home
+ * -------------------------------------------------------------------------- */
+
+:root {
+  --vp-home-hero-name-color: transparent;
+  --vp-home-hero-name-background: -webkit-linear-gradient(
+    120deg,
+    #00e5c9 30%,
+    #ff9f43
+  );
+
+  --vp-home-hero-image-background-image: linear-gradient(
+    -45deg,
+    #5d3f6a 50%,
+    #00e5c9 50%
+  );
+  --vp-home-hero-image-filter: blur(44px);
+}
+
+@media (min-width: 640px) {
+  :root {
+    --vp-home-hero-image-filter: blur(56px);
+  }
+}
+
+@media (min-width: 960px) {
+  :root {
+    --vp-home-hero-image-filter: blur(68px);
+  }
+}
+
+/**
+ * Component: Custom Block
+ * -------------------------------------------------------------------------- */
+
+:root {
+  --vp-custom-block-tip-border: transparent;
+  --vp-custom-block-tip-text: var(--vp-c-text-1);
+  --vp-custom-block-tip-bg: var(--vp-c-brand-soft);
+  --vp-custom-block-tip-code-bg: var(--vp-c-brand-soft);
+}
+
+/**
+ * Component: Algolia
+ * -------------------------------------------------------------------------- */
+
+.DocSearch {
+  --docsearch-primary-color: var(--vp-c-brand-1) !important;
+}
