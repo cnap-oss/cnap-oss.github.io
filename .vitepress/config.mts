@@ -5,7 +5,7 @@ export default defineConfig({
   srcDir: "docs",
 
   title: "CNAP",
-  description: "Cloud Native Agent Platform - Discord 기반 AI 에이전트 플랫폼",
+  description: "Chat Native Agent Platform - Discord 기반 AI 에이전트 플랫폼",
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     logo: "/cnap-logo.png",

@@ -4,7 +4,7 @@ layout: home
 
 hero:
   name: "CNAP"
-  text: "Cloud Native Agent Platform"
+  text: "Chat Native Agent Platform"
   tagline: Discord 기반 AI 에이전트 생성·관리·실행 플랫폼
   image:
     src: /cnap-logo.png

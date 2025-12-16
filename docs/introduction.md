@@ -2,7 +2,7 @@
 
 ## 프로젝트 제목
 
-**CNAP (Cloud Native Agent Platform)**
+**CNAP (Chat Native Agent Platform)**
 
 Discord 기반 AI 에이전트 생성·관리·실행 플랫폼
 
