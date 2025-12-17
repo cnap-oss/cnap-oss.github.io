@@ -1,103 +1,174 @@
-# 시작하기
+# 퀵스타트 가이드
 
-## 전체 사용 흐름 개요
+CNAP Agent를 빠르게 시작하는 방법을 안내합니다.
 
-CNAP의 전체 사용 흐름은 다음과 같습니다:
+## 시스템 요구사항
 
-1. **CNAP 실행을 위한 필수 도구를 설치하고 소스 코드를 빌드합니다.**
-2. **설정 파일과 환경변수를 구성한 뒤 CNAP을 실행합니다.**
-3. **Discord 봇 토큰을 이용해 CNAP과 Discord를 연결하고 봇을 서버에 초대합니다.**
-4. **Discord 채널에서 명령어를 통해 에이전트를 생성하고 실행 결과를 확인합니다.**
+- **운영체제**: macOS 또는 Linux
+- **아키텍처**: amd64 (x86_64) 또는 arm64 (aarch64)
+- **필수 소프트웨어**: Docker
+- **네트워크**: 인터넷 연결 (GitHub 릴리스 다운로드 및 API 사용을 위해)
+- **Discord Bot Token**: [Discord 봇 설정 가이드](./discord-setup.md) 참조
+- **OpenCode Zen API Key**: [OpenCode Zen API Key 발급 가이드](./opencode-api-key.md) 참조
 
-## 설치 및 실행 환경 준비
+## 설치
 
-CNAP은 Linux 환경에서 실행되며, 에이전트 실행 시 격리된 환경을 제공하기 위해 Docker와 runc를 사용합니다. 설치 전 다음과 같은 환경이 준비되어야 합니다.
+### 자동 설치 (권장)
 
-### 필수 요구사항
+다음 명령어를 실행하여 CNAP을 자동으로 설치할 수 있습니다:
 
-- **운영체제**: Linux (커널 3.10 이상 권장)
-- **Go**: 1.23 이상
-- **Docker 및 runc**: 최신 버전
-- **Git**: 소스 코드 클론용
-- **실행 권한**: 컨테이너 실행을 위한 root 권한
-- **Discord 봇 토큰**
+```bash
+curl -fsSL https://cnap-oss.github.io/install.sh | bash
+```
 
-::: tip 참고
-Docker는 에이전트 실행을 위한 컨테이너 환경을 제공하며, 공식 Docker 저장소 또는 배포판 패키지 매니저를 통해 설치합니다.
+### 설치 과정
 
-runc는 Docker 내부에서 사용하는 컨테이너 런타임으로, Docker 설치 시 함께 제공되거나 패키지 매니저를 통해 설치할 수 있습니다.
+설치 스크립트를 실행하면 다음과 같은 정보를 입력하라는 메시지가 표시됩니다:
+
+#### 1. Discord Bot Token
+
+Discord 봇을 설정하고 토큰을 발급받아야 합니다. 자세한 방법은 [Discord 봇 설정 가이드](./discord-setup.md)를 참조하세요.
+
+#### 2. OpenCode Zen API Key
+
+OpenCode Zen API Key를 발급받아야 합니다. 자세한 방법은 [OpenCode Zen API Key 발급 가이드](./opencode-api-key.md)를 참조하세요.
+
+#### 3. Shell 프로파일 업데이트
+
+설치 스크립트가 자동으로 Shell 프로파일 업데이트를 제안합니다. `y`를 입력하여 자동으로 PATH를 설정하거나, `N`을 입력하여 수동으로 설정할 수 있습니다.
+
+**수동 설정 방법:**
+
+::: code-group
+
+```bash [Bash]
+echo 'export PATH="$HOME/.cnap/bin:$PATH"' >> ~/.bashrc
+source ~/.bashrc
+```
+
+```bash [Zsh]
+echo 'export PATH="$HOME/.cnap/bin:$PATH"' >> ~/.zshrc
+source ~/.zshrc
+```
+
+```fish [Fish]
+set -Ux fish_user_paths $HOME/.cnap/bin $fish_user_paths
+```
+
 :::
 
-## 소스 코드 클론 및 빌드
+## Docker 설치
 
-환경 준비가 완료되면 CNAP 소스 코드를 클론하고 빌드합니다.
+CNAP은 작업 실행을 위해 Docker가 필요합니다. Docker가 설치되어 있지 않은 경우, 설치 스크립트가 자동 설치를 제안합니다.
 
-```bash
-# 저장소 클론
-git clone https://github.com/cnap-oss/app.git
-cd app
+### macOS
 
-# 빌드
-make build
+::: code-group
+
+```bash [Homebrew]
+brew install --cask docker
 ```
 
-빌드가 완료되면 `./bin/cnap` 실행 파일이 생성됩니다. 아래 명령어 실행 시 도움말이 출력되면 정상적으로 빌드된 상태입니다.
-
-```bash
-./bin/cnap --help
+```bash [수동 설치]
+# Docker Desktop 다운로드
+# https://www.docker.com/products/docker-desktop
 ```
 
-## 설정 파일 및 환경변수 구성
-
-CNAP은 환경변수 또는 설정 파일을 통해 동작합니다. 주요 설정 항목은 다음과 같습니다:
-
-| 환경변수             | 설명                                  |
-| -------------------- | ------------------------------------- |
-| `CNAP_DB_DSN`        | 데이터베이스 연결 정보                |
-| `CNAP_LOG_LEVEL`     | 로그 레벨 (debug, info, warn, error)  |
-| `CNAP_RUNNER_MODE`   | 에이전트 실행 방식 (docker 또는 host) |
-| `CNAP_DISCORD_TOKEN` | Discord 봇 토큰                       |
-
-### 환경변수 예시
-
-```bash
-export CNAP_DB_DSN="postgresql://user:password@localhost:5432/cnap"
-export CNAP_LOG_LEVEL="info"
-export CNAP_RUNNER_MODE="docker"
-export CNAP_DISCORD_TOKEN="your-discord-bot-token"
-```
-
-### 설정 파일 사용
-
-설정 파일을 사용하는 경우 `--config` 옵션을 통해 경로를 전달합니다.
-
-```bash
-./bin/cnap --config config.yaml
-```
-
-## CNAP 실행
-
-### 바이너리 실행
-
-```bash
-./bin/cnap serve
-```
-
-실행 후 로그에 초기화 메시지와 Discord 연결 성공 메시지가 출력되면 정상 실행 상태입니다. 프로세스가 종료되지 않고 대기 중인지 확인합니다.
-
-### Docker 실행
-
-```bash
-docker run -d \
-  -e CNAP_DB_DSN="postgresql://user:password@db:5432/cnap" \
-  -e CNAP_DISCORD_TOKEN="your-discord-bot-token" \
-  -e CNAP_RUNNER_MODE="docker" \
-  -v /var/run/docker.sock:/var/run/docker.sock \
-  cnap/cnap:latest
-```
-
-컨테이너 로그에 오류 메시지가 없고 Discord 연결 로그가 출력되면 정상 상태입니다.
-
-::: warning 중요
-Docker 모드로 실행할 때는 Docker 소켓을 마운트해야 에이전트 컨테이너를 생성할 수 있습니다.
 :::
+
+Docker Desktop 앱을 실행하여 Docker 서비스를 시작하세요.
+
+### Linux
+
+```bash
+# Docker 공식 설치 스크립트
+curl -fsSL https://get.docker.com -o get-docker.sh
+sudo sh get-docker.sh
+
+# 현재 사용자를 docker 그룹에 추가
+sudo usermod -aG docker $USER
+newgrp docker
+```
+
+::: warning 주의
+변경 사항을 적용하려면 로그아웃 후 다시 로그인하거나 `newgrp docker` 명령어를 실행해야 합니다.
+:::
+
+## 설치 확인
+
+설치가 완료되면 다음 명령어로 설치를 확인할 수 있습니다:
+
+```bash
+# 버전 확인
+cnap --version
+
+# 도움말 확인
+cnap --help
+```
+
+## 설치 위치
+
+CNAP은 다음 위치에 설치됩니다:
+
+- **바이너리**: `$HOME/.cnap/bin/cnap`
+- **설정 파일**: `$HOME/.cnap/config.yml`
+- **데이터베이스**: `$HOME/.cnap/` (SQLite)
+
+## 기본 사용법
+
+### 에이전트 생성
+
+```bash
+cnap agent create
+```
+
+대화형 프롬프트가 나타나며 에이전트 정보를 입력할 수 있습니다.
+
+### 작업 생성
+
+```bash
+cnap task create
+```
+
+에이전트를 선택하고 작업을 생성합니다.
+
+### 작업 실행
+
+```bash
+cnap task send
+```
+
+생성된 작업을 선택하고 실행합니다.
+
+### 기타 명령어
+
+```bash
+# 에이전트 목록 조회
+cnap agent list
+
+# 작업 목록 조회
+cnap task list
+
+# 작업 상세 조회
+cnap task get <task-id>
+```
+
+## 문제 해결
+
+### 명령어를 찾을 수 없는 경우
+
+```bash
+# 새 터미널을 열거나 Shell 프로파일 다시 로드
+source ~/.bashrc  # Bash
+source ~/.zshrc   # Zsh
+```
+
+### Docker 실행 문제
+
+```bash
+# macOS: Docker Desktop 실행
+open -a Docker
+
+# Linux: Docker 서비스 시작
+sudo systemctl start docker
+```

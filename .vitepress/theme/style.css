@@ -49,12 +49,11 @@
   --vp-c-bg-soft: #f6f6f7;
 
   /* Pixel Font */
-  --vp-font-family-base: "NeoDunggeunmo Pro", monospace, ui-monospace,
-    SFMono-Regular, "SF Mono", Menlo, Monaco, Consolas, "Liberation Mono",
-    "Courier New";
-  --vp-font-family-mono: "NeoDunggeunmo Pro", monospace, ui-monospace,
-    SFMono-Regular, "SF Mono", Menlo, Monaco, Consolas, "Liberation Mono",
-    "Courier New";
+  --vp-font-family-base: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  --vp-font-family-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Monaco,
+    Consolas, "Liberation Mono", "Courier New", monospace;
 
   /* Logo size */
   --vp-nav-logo-height: 64px;
@@ -294,6 +293,18 @@ h6 {
 
 .name {
   font-family: "NeoDunggeunmo Pro", monospace !important;
+}
+
+.VPNavBarTitle .title {
+  font-family: "NeoDunggeunmo Pro", monospace !important;
+}
+
+.VPSidebarItem .text {
+  font-family: "NeoDunggeunmo Pro", monospace;
+}
+
+.VPNavBarMenuLink {
+  font-family: "NeoDunggeunmo Pro", monospace;
 }
 
 /**

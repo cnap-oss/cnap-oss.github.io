@@ -29,8 +29,9 @@ export default defineConfig({
       {
         text: "시작하기",
         items: [
-          { text: "설치 및 실행", link: "/getting-started" },
-          { text: "Discord 연동", link: "/discord-integration" },
+          { text: "퀵스타트 가이드", link: "/getting-started" },
+          { text: "Discord 봇 설정", link: "/discord-setup" },
+          { text: "OpenCode API Key 발급", link: "/opencode-api-key" },
         ],
       },
       {
