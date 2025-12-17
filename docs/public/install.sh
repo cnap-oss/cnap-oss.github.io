@@ -201,7 +201,7 @@ check_docker() {
     fi
     
     echo ""
-    read -p "Docker를 자동으로 설치하시겠습니까? (y/N): " -r REPLY
+    read -p "Docker를 자동으로 설치하시겠습니까? (y/N): " -r REPLY < /dev/tty
     echo ""
     
     if [[ $REPLY =~ ^[Yy]$ ]]; then
@@ -250,7 +250,7 @@ create_config() {
     
     if [ -f "$CONFIG_FILE" ]; then
         log_warn "설정 파일이 이미 존재합니다: $CONFIG_FILE"
-        read -p "기존 설정 파일을 덮어쓰시겠습니까? (y/N): " -r REPLY
+        read -p "기존 설정 파일을 덮어쓰시겠습니까? (y/N): " -r REPLY < /dev/tty
         echo ""
         if [[ ! $REPLY =~ ^[Yy]$ ]]; then
             log_info "설정 파일 생성을 건너뜁니다."
@@ -276,7 +276,7 @@ create_config() {
     echo "   - Bot Permissions: Send Messages, Read Messages, etc."
     echo "7. 생성된 URL로 봇을 서버에 초대"
     echo ""
-    read -p "Discord Bot Token을 입력하세요: " CNAP_DISCORD_TOKEN
+    read -p "Discord Bot Token을 입력하세요: " CNAP_DISCORD_TOKEN < /dev/tty
     
     echo ""
     echo "════════════════════════════════════════"
@@ -291,7 +291,7 @@ create_config() {
     echo "5. API Key 이름 설정 및 생성"
     echo "6. 생성된 API Key 복사 (한 번만 표시됨)"
     echo ""
-    read -p "OpenCode Zen API Key를 입력하세요: " CNAP_OPENCODE_API_KEY
+    read -p "OpenCode Zen API Key를 입력하세요: " CNAP_OPENCODE_API_KEY < /dev/tty
     
     # config.yml 생성
     cat > "$CONFIG_FILE" << EOF
@@ -385,7 +385,7 @@ setup_shell_profile() {
     echo "  Fish:  set -Ux fish_user_paths \$HOME/.cnap/bin \$fish_user_paths"
     echo ""
     
-    read -p "현재 쉘($CURRENT_SHELL)의 프로파일을 자동으로 업데이트하시겠습니까? (y/N): " -r REPLY
+    read -p "현재 쉘($CURRENT_SHELL)의 프로파일을 자동으로 업데이트하시겠습니까? (y/N): " -r REPLY < /dev/tty
     echo ""
     
     if [[ $REPLY =~ ^[Yy]$ ]]; then
