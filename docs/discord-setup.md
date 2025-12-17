@@ -16,19 +16,12 @@ CNAP Agent를 Discord에서 사용하기 위한 Discord 봇 설정 방법을 안
 
 ![New Application](/images/discord-new-app.png)
 
-### 3. Bot 생성
+### 3. Bot Token 복사
 
-1. 왼쪽 사이드바에서 **'Bot'** 메뉴를 클릭합니다.
-2. **'Add Bot'** 버튼을 클릭합니다.
+1. 좌측 사이드바의 **'Bot'** 메뉴를 클릭합니다.
+2. Bot 설정 페이지에서 **'Reset Token'** 버튼을 클릭합니다.
 3. 확인 대화상자에서 **'Yes, do it!'**을 클릭합니다.
-
-![Add Bot](/images/discord-add-bot.png)
-
-### 4. Bot Token 복사
-
-1. Bot 설정 페이지에서 **'Reset Token'** 버튼을 클릭합니다.
-2. 확인 대화상자에서 **'Yes, do it!'**을 클릭합니다.
-3. 표시된 토큰을 **복사**합니다.
+4. 표시된 토큰을 **복사**합니다.
 
 ::: danger 중요
 Bot Token은 비밀번호와 같습니다. 절대로 공개 저장소나 다른 사람과 공유하지 마세요. 토큰이 노출되면 즉시 'Reset Token'을 클릭하여 새로운 토큰을 발급받으세요.
@@ -38,7 +31,7 @@ Bot Token은 비밀번호와 같습니다. 절대로 공개 저장소나 다른 
 토큰은 생성 시 한 번만 표시됩니다. 복사한 토큰을 안전한 곳에 보관하세요. 토큰을 잃어버린 경우 'Reset Token'을 클릭하여 새로 발급받아야 합니다.
 :::
 
-### 5. Privileged Gateway Intents 활성화
+### 4. Privileged Gateway Intents 활성화
 
 Bot이 Discord 서버에서 메시지를 읽고 처리하려면 다음 권한을 활성화해야 합니다:
 
@@ -86,8 +79,9 @@ Bot이 Discord 서버에서 메시지를 읽고 처리하려면 다음 권한을
 
 ### 3. 초대 URL 복사
 
-1. 페이지 하단의 **'GENERATED URL'**에서 생성된 URL을 복사합니다.
-2. 이 URL은 봇을 서버에 초대할 때 사용됩니다.
+1. 좌측의 **'Installation'** 탭으로 이동합니다.
+2. 페이지 하단의 **'Install Link'**에서 생성된 URL을 복사합니다.
+3. 이 URL은 봇을 서버에 초대할 때 사용됩니다.
 
 ![Generated URL](/images/discord-generated-url.png)
 
@@ -113,7 +107,7 @@ Bot이 Discord 서버에서 메시지를 읽고 처리하려면 다음 권한을
 
 ### 자동 설정 (설치 스크립트 사용)
 
-[퀵스타트 가이드](./quickstart.md)의 설치 스크립트를 사용하면 설치 과정에서 Discord Bot Token을 입력하라는 프롬프트가 표시됩니다.
+[퀵스타트 가이드](./getting-started.md)의 설치 스크립트를 사용하면 설치 과정에서 Discord Bot Token을 입력하라는 프롬프트가 표시됩니다.
 
 ```bash
 Discord Bot Token을 입력하세요: <여기에 복사한 토큰 붙여넣기>
@@ -144,7 +138,7 @@ vim $HOME/.cnap/config.yml
 
 # Discord Bot Configuration
 discord:
-  token: "..."
+  token: "MTIz..."
 # 나머지 설정...
 ```
 
@@ -171,4 +165,4 @@ chmod 600 $HOME/.cnap/config.yml
 
 ## 다음 단계
 
-[퀵스타트 가이드](./quickstart.md)로 돌아가 설치를 계속하세요.
+[퀵스타트 가이드](./getting-started.md)로 돌아가 설치를 계속하세요.

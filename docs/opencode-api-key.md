@@ -76,7 +76,7 @@ API Key는 생성 시 한 번만 표시됩니다. 반드시 안전한 곳에 보
 
 ### 자동 설정 (설치 스크립트 사용)
 
-[퀵스타트 가이드](./quickstart.md)의 설치 스크립트를 사용하면 설치 과정에서 OpenCode Zen API Key를 입력하라는 프롬프트가 표시됩니다.
+[퀵스타트 가이드](./getting-started.md)의 설치 스크립트를 사용하면 설치 과정에서 OpenCode Zen API Key를 입력하라는 프롬프트가 표시됩니다.
 
 ```bash
 OpenCode Zen API Key를 입력하세요: <여기에 복사한 API Key 붙여넣기>
@@ -134,4 +134,4 @@ API Key가 올바르게 복사되었는지, 설정 파일에 공백이나 특수
 
 ## 다음 단계
 
-[퀵스타트 가이드](./quickstart.md)로 돌아가 설치를 계속하세요.
+[퀵스타트 가이드](./getting-started.md)로 돌아가 설치를 계속하세요.
